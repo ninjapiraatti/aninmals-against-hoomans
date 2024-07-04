@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private SpriteRenderer _renderer;
+
+    void Awake()
     {
-        
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Highlight(bool isHighlighted)
     {
-        
+        Debug.Log(isHighlighted);
+        if (isHighlighted)
+        {
+            _renderer.color = Color.yellow; // Or any color you prefer
+        }
+        else
+        {
+            _renderer.color = Color.white; // Original color
+        }
     }
 }

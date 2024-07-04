@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 2f;
+    [SerializeField] private GridManager gridManager;
     private Rigidbody2D rb;
     private Vector2 movementDirection;
+    private Tile lastHighlightedTile;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -14,9 +16,26 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        UpdateNearestTile();
     }
 
     void FixedUpdate() {
         rb.velocity = movementDirection * movementSpeed;
+    }
+
+    void UpdateNearestTile()
+    {
+        Tile nearestTile = gridManager.GetNearestTile(transform.position);
+        Debug.Log(nearestTile);
+        
+        if (nearestTile != lastHighlightedTile)
+        {
+            if (lastHighlightedTile != null)
+            {
+                lastHighlightedTile.Highlight(false);
+            }
+            nearestTile.Highlight(true);
+            lastHighlightedTile = nearestTile;
+        }
     }
 }
