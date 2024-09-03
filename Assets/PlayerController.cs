@@ -19,15 +19,16 @@ public class PlayerController : MonoBehaviour
         UpdateNearestTile();
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         rb.velocity = movementDirection * movementSpeed;
     }
 
     void UpdateNearestTile()
     {
         Tile nearestTile = gridManager.GetNearestTile(transform.position);
-        Debug.Log(nearestTile);
-        
+        //Debug.Log(nearestTile);
+
         if (nearestTile != lastHighlightedTile)
         {
             if (lastHighlightedTile != null)
