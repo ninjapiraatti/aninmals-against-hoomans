@@ -489,6 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
+  gridManager: {fileID: 120732443}
 --- !u!50 &1404136694
 Rigidbody2D:
   serializedVersion: 4
