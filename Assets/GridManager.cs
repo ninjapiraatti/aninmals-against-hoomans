@@ -25,11 +25,14 @@ public class GridManager : MonoBehaviour
             {
                 var spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
+
+                // Assign a random tile type
+                spawnedTile.tileType = (TileType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(TileType)).Length);
+                spawnedTile.UpdateAppearance(false); // Update the appearance based on the type
+
                 _tiles.Add(spawnedTile);
             }
         }
-
-        _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
     }
 
 

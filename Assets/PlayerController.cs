@@ -39,9 +39,9 @@ public class PlayerController : MonoBehaviour
         {
             if (lastHighlightedTile != null)
             {
-                lastHighlightedTile.Highlight(false);
+                lastHighlightedTile.UpdateAppearance(false);
             }
-            nearestTile.Highlight(true);
+            nearestTile.UpdateAppearance(true);
             lastHighlightedTile = nearestTile;
         }
     }

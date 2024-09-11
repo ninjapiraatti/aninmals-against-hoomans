@@ -1,26 +1,46 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TileType
+{
+    Grass,
+    Concrete,
+}
+
 public class Tile : MonoBehaviour
 {
     private SpriteRenderer _renderer;
+    public TileType tileType;
 
     void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Highlight(bool isHighlighted)
+    public void UpdateAppearance(Boolean isHighlighted)
     {
-        Debug.Log(isHighlighted);
+        // Change the sprite based on the tile type
         if (isHighlighted)
         {
-            _renderer.color = Color.yellow; // Or any color you prefer
+            _renderer.color = Color.cyan;
         }
         else
         {
-            _renderer.color = Color.white; // Original color
+            switch (tileType)
+            {
+                case TileType.Grass:
+                    _renderer.color = Color.green; // Change to grass color
+                    break;
+                case TileType.Concrete:
+                    _renderer.color = Color.gray; // Change to concrete color
+                    break;
+                // Add more cases for different tile types
+                default:
+                    _renderer.color = Color.white; // Default color
+                    break;
+            }
         }
     }
 
