@@ -17,6 +17,12 @@ public class PlayerController : MonoBehaviour
     {
         movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         UpdateNearestTile();
+
+        // Check for attack input
+        if (Input.GetButtonDown("Fire1")) // You can change "Fire1" to any other input if needed
+        {
+            Attack();
+        }
     }
 
     void FixedUpdate()
@@ -37,6 +43,14 @@ public class PlayerController : MonoBehaviour
             }
             nearestTile.Highlight(true);
             lastHighlightedTile = nearestTile;
+        }
+    }
+
+    void Attack()
+    {
+        if (lastHighlightedTile != null)
+        {
+            lastHighlightedTile.OnAttack(); // Call the attack method on the nearest tile
         }
     }
 }

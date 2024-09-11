@@ -23,4 +23,11 @@ public class Tile : MonoBehaviour
             _renderer.color = Color.white; // Original color
         }
     }
+
+    public void OnAttack()
+    {
+        // Logic for what happens when the tile is attacked
+        Debug.Log($"{gameObject.name} has been attacked!");
+        // You can add more logic here, such as reducing health, changing state, etc.
+    }
 }
